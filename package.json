@@ -1,6 +1,8 @@
 {
   "name": "project-3",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"},
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -10,7 +12,7 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
