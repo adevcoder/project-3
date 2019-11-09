@@ -7,8 +7,12 @@
     "formik": "^2.0.3",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+<<<<<<< HEAD
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+=======
+    "react-scripts": "3.1.1",
+>>>>>>> bc3e5d35a1dc9d5b37c7ba6563033d16e6cf9ce3
     "yup": "^0.27.0"
   },
   "scripts": {
