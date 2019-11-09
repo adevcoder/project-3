@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
-import * as EmailValidator from "email-validator";
+// import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
 const ValidatedLoginForm = () => (
   <Formik
-    initialValues={{ email: "", password: "" }}
+    initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         console.log("Logging in", values);
@@ -13,13 +13,17 @@ const ValidatedLoginForm = () => (
     }}
 
     validationSchema={Yup.object().shape({
+      firstName: Yup.string()
+        .required("Required"),
+      lastName: Yup.string()
+        .required("Required"),
       email: Yup.string()
         .email()
         .required("Required"),
       password: Yup.string()
-        .required("No password provided.")
-        // .min(8, "Password is too short - should be 8 chars minimum.")
-        // .matches(/(?=.*[0-9])/, "Password must contain a number.")
+        .required("No password provided")
+      // .min(8, "Password is too short - should be 8 chars minimum.")
+      // .matches(/(?=.*[0-9])/, "Password must contain a number.")
     })}
   >
     {props => {
@@ -34,6 +38,32 @@ const ValidatedLoginForm = () => (
       } = props;
       return (
         <form onSubmit={handleSubmit}>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            name="firstName"
+            type="text"
+            placeholder="Enter your first name"
+            value={values.firstName}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.firstName && touched.firstName && "error"}
+          />
+          {errors.firstName && touched.firstName && (
+            <div className="input-feedback">{errors.firstName}</div>
+          )}
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            name="lastName"
+            type="text"
+            placeholder="Enter your last name"
+            value={values.lastName}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.lastName && touched.lastName && "error"}
+          />
+          {errors.lastName && touched.lastName && (
+            <div className="input-feedback">{errors.lastName}</div>
+          )}
           <label htmlFor="email">Email</label>
           <input
             name="email"
@@ -47,7 +77,7 @@ const ValidatedLoginForm = () => (
           {errors.email && touched.email && (
             <div className="input-feedback">{errors.email}</div>
           )}
-          <label htmlFor="email">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             name="password"
             type="password"
@@ -60,9 +90,7 @@ const ValidatedLoginForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" disabled={isSubmitting}>
-            Login
-          </button>
+          <button type="submit" onClick={isSubmitting}>Submit</button>
         </form>
       );
     }}
