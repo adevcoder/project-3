@@ -17,11 +17,17 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 const router = express.Router()
 
+// If its production environment!
+if (process.env.NODE_ENV === 'production') {
+    console.log('YOU ARE IN THE PRODUCTION ENV');
+    app.use('/', express.static(path.join(__dirname, './client/build/static')));
+}
 // console.log that your server is up and running
 //app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // force: false won't create database if exists
 var syncOptions = { force: true };
+
 
 
 // set PORT for express

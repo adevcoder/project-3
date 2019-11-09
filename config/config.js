@@ -1,16 +1,17 @@
 module.exports = {
     "development": {
-        "username": process.env.MYSQL_USERNME,
+        "username": process.env.MYSQL_USERNAME,
         "password": process.env.MYSQL_KEY,
         "database": process.env.MYSQL_DBNAME,
         "host": process.env.MYSQL_HOST,
+        "port": 3306,
         "dialect": "mysql"
     },
     "test": {
         "username": "root",
-        "password": "",
-        "database": "",
-        "host": "localhost",
+        "password": "root",
+        "database": "socal_charm",
+        "host": "socal_charm",
         "dialect": "mysql",
         "logging": false
     },
