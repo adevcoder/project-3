@@ -2,7 +2,7 @@
 var dotenv = require("dotenv").config();
 var bodyParser = require("body-parser");
 var express = require("express");
-
+var path  = require("path")
 //import bodyParser from 'body-parser'
 //import express from 'express'
 
@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
 //app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // force: false won't create database if exists
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 
 
