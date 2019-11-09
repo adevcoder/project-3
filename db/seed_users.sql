@@ -18,6 +18,7 @@
 --
 -- Table structure for table `users`
 --
+SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -28,8 +29,8 @@ CREATE TABLE `users` (
   `lastName` varchar(80) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
+  `createdAt` datetime NOT NULL default now(),
+  `updatedAt` datetime NOT NULL default '0000-00-00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `Users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -54,5 +55,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+SET FOREIGN_KEY_CHECKS=1;
 -- Dump completed on 2019-11-09 11:02:07
