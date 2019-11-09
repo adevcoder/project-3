@@ -2,15 +2,16 @@
   "name": "project-3",
   "version": "1.0.0",
   "engines": {
-    "node": "12.13.0"},
+    "node": "12.13.0"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
     "install": "cd client && npm install",
+    "client": "cd client && npm run start",
     "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
