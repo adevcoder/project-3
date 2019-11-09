@@ -1,14 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 
 import "./styles.css";
-import ValidatedLoginForm from "./ValidatedLoginForm";
+import ValidatedRegisterForm from "./ValidatedRegisterForm";
 
 function App() {
   return (
     <div className="App">
-      <h1>Login</h1>
-      <ValidatedLoginForm />
+      <h1>Register</h1>
+      <ValidatedRegisterForm />
     </div>
   );
 }
