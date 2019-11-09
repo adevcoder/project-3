@@ -28,7 +28,6 @@ app.get('/', function (req, res) {
 var syncOptions = { force: false };
 
 
-
 // set PORT for express
 // Heroku needs process.env.PORT
 var PORT = process.env.PORT || 5000;
