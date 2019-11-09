@@ -1,6 +1,6 @@
 import React from "react";
 
-export class LoginForm extends React.Component {
+export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 // import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
-const ValidatedLoginForm = () => (
+const ValidatedRegisterForm = () => (
   <Formik
     initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
@@ -97,4 +97,4 @@ const ValidatedLoginForm = () => (
   </Formik>
 );
 
-export default ValidatedLoginForm;
+export default ValidatedRegisterForm;
