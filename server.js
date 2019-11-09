@@ -25,7 +25,9 @@ app.get('/', function (req, res) {
 //app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // force: false won't create database if exists
-var syncOptions = { force: false };
+
+var syncOptions = { force: false};
+
 
 
 // set PORT for express

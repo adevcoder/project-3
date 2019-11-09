@@ -33,17 +33,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        numEmployees: DataTypes.INTEGER,
-        yearFounded: {
-            type: DataTypes.STRING(4),
-            allowNull: false,
-        },
-        phone: {
-            type: DataTypes.STRING(25),
-            allowNull: false,
-        },
-        numLocations: DataTypes.INTEGER,
-        annualBudget: DataTypes.DECIMAL(16, 2),
         url: {
             type: DataTypes.STRING(255),
             default: '',
