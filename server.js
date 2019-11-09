@@ -34,6 +34,8 @@ var syncOptions = { force: false};
 // Heroku needs process.env.PORT
 var PORT = process.env.PORT || 5000;
 
+
+
 // If running a test, set syncOptions.force to true
 //  force : true clears the `testdb`
 if (process.env.NODE_ENV === "test") {
