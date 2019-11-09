@@ -10,10 +10,10 @@
     "start": "node server.js",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "install": "cd client && npm install",
+    "install": "cd client && npm install && npm run build && cd ..",
     "client": "cd client && npm run start",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
