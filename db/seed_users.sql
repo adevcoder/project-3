@@ -20,10 +20,10 @@
 --
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(80) NOT NULL,
   `lastName` varchar(80) NOT NULL,
@@ -37,14 +37,14 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `Users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `createdAt`, `updatedAt`) VALUES (1,'Ken','Shih','ckken7315@gmail.com','$2b$10$Hveupxf9j16RBe.MP72uqeGXdFRrq8BrdusDTWrmv.8baStbE.PRe','2019-11-07 04:03:55','2019-11-07 04:03:55');
-INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `createdAt`, `updatedAt`) VALUES (2,'Mario','Araujo','aztecanet@gmail.com','$2b$10$GPxPbbhHiHuLiJK/WQoaKuhMRD8jc5T4ZG2nc82UELsF4oe8Bcera','2019-11-07 04:12:53','2019-11-07 04:12:53');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `Users` WRITE;
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` (`id`, `firstName`, `lastName`, `email`, `password`, `createdAt`, `updatedAt`) VALUES (1,'Ken','Shih','ckken7315@gmail.com','$2b$10$Hveupxf9j16RBe.MP72uqeGXdFRrq8BrdusDTWrmv.8baStbE.PRe','2019-11-07 04:03:55','2019-11-07 04:03:55');
+INSERT INTO `Users` (`id`, `firstName`, `lastName`, `email`, `password`, `createdAt`, `updatedAt`) VALUES (2,'Mario','Araujo','aztecanet@gmail.com','$2b$10$GPxPbbhHiHuLiJK/WQoaKuhMRD8jc5T4ZG2nc82UELsF4oe8Bcera','2019-11-07 04:12:53','2019-11-07 04:12:53');
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
