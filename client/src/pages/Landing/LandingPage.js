@@ -9,8 +9,8 @@ function Jumbotron() {
             <p class="lead"> At The Non-Profit Hub, our goal is to connect
                 people with organizations that provide meaningful
                 change in the world. We do this by creating a space in which
-                you can search for an organizations of your
-                interest and create long time relationships with them
+                you can search for organizations of your
+                interest and create long time relationships
                 through monetary contributions.
           </p>
 
