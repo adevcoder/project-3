@@ -16,18 +16,18 @@ module.exports = function (app) {
     });
 
     // post route for creating a new user
-    app.post("/api/signup", function (req, res) {
-        console.log('Create User via signup:', req.body);
+    app.post("/api/register", function (req, res) {
+        console.log('Create User via register:', req.body);
         db.User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password
         }).then(function () {
-            console.log('Created User via signup');
+            console.log('Created User via register');
             res.redirect(307, "/api/login");
         }).catch(function (err) {
-            console.log('Error Creating User via signup');
+            console.log('Error Creating User via register');
             console.log("error: ", err);
             res.status(401).json(err);
         });

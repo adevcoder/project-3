@@ -18,10 +18,22 @@ export class LoginForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     this.setState({
       email: "",
       password: ""
+    });
+    fetch("/user", {
+      method: "POST",
+      data: {
+        firstName: this.refs.firstName,
+        lastName: this.refs.lastName
+      }
+    })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 
@@ -45,7 +57,7 @@ export class LoginForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={this.handleSubmit}>Submit</button>
       </form>
     );
   }

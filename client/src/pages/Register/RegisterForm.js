@@ -20,12 +20,26 @@ export class RegisterForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     this.setState({
       firstName: "",
       lastName: "",
       email: "",
       password: ""
+    });
+    fetch("/user", {
+      method: "POST",
+      data: {
+        firstName: this.refs.firstName,
+        lastName: this.refs.lastName,
+        email: this.refs.email,
+        password: this.refs.password
+      }
+    })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 

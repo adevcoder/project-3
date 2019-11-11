@@ -27,7 +27,7 @@ const ValidatedLoginForm = () => (
         values,
         touched,
         errors,
-        isSubmitting,
+        // isSubmitting,
         handleChange,
         handleBlur,
         handleSubmit
@@ -60,7 +60,7 @@ const ValidatedLoginForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" onClick={isSubmitting}>Submit</button>
+          <button type="submit" onClick={handleSubmit}>Submit</button>
         </form>
       );
     }}

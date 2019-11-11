@@ -1,12 +1,11 @@
 import React from "react";
 import "./styles.css";
-import ValidatedLoginForm from "./ValidatedLoginForm";
+import HomePage from "./HomePage";
 
 function App() {
   return (
     <div className="App">
-      <h1>Login</h1>
-      <ValidatedLoginForm />
+      <HomePage />
     </div>
   );
 }
