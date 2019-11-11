@@ -79,7 +79,7 @@ export class RegisterForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" href="/home" onClick={this.handleSubmit}>Submit</button>
       </form>
     );
   }
