@@ -2,19 +2,26 @@
 var dotenv = require("dotenv").config();
 var bodyParser = require("body-parser");
 var express = require("express");
+var session = require("express-session");
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
+
 var path  = require("path")
+
 //import bodyParser from 'body-parser'
 //import express from 'express'
 
 //const cookieParser = require('cookie-parser') ;
-//const session = require('express-session');
 const db = require("./models");
 
-const app = express()
 const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+const app = express()
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+//app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+
 const router = express.Router()
 
 // app.use(express.static(path.join(__dirname, 'build')));
@@ -32,9 +39,14 @@ const router = express.Router()
   }
 // console.log that your server is up and running
 //app.listen(port, () => console.log(`Listening on port ${port}`));
+// We need to use sessions to keep track of our user's login status
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
+require("./routes/htmlroutes.js")(app);
+require("./routes/apiRoutes")(app);
 // force: false won't create database if exists
-
 var syncOptions = { force: false};
 
 
@@ -47,8 +59,9 @@ var PORT = process.env.PORT || 5000;
 
 // If running a test, set syncOptions.force to true
 //  force : true clears the `testdb`
-if (process.env.NODE_ENV === "test") {
-    syncOptions.force = true;
+if (process.env.NODE_ENV === "development") {
+    //syncOptions.force = true; //drops all tables
+    syncOptions.force = false;
 }
 
 // Syncing models  to database & then starts the server 
