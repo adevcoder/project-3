@@ -2,18 +2,18 @@ import React from "react";
 
 function Nav() {
     return (
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link active" href="/home">Home</a>
+        <ul className="nav justify-content-end">
+            <li className="nav-item">
+                <a className="nav-link active" href="/home">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/categories">Categories</a>
+            <li className="nav-item">
+                <a className="nav-link" href="/categories">Categories</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/saved">Saved</a>
+            <li className="nav-item">
+                <a className="nav-link" href="/saved">Saved</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/donate">Donate</a>
+            <li className="nav-item">
+                <a className="nav-link" href="/donate">Donate</a>
             </li>
         </ul>
     )

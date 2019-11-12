@@ -57,7 +57,7 @@ export class LoginForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
-        <button type="submit" onClick={this.handleSubmit}>Submit</button>
+        <button type="submit" href="/home" onClick={this.handleSubmit}>Submit</button>
       </form>
     );
   }

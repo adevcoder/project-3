@@ -60,7 +60,7 @@ const ValidatedLoginForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" onClick={handleSubmit}>Submit</button>
+          <button type="submit" href="/home" onClick={handleSubmit}>Submit</button>
         </form>
       );
     }}
