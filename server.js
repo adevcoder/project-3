@@ -6,6 +6,8 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
+var path  = require("path")
+
 //import bodyParser from 'body-parser'
 //import express from 'express'
 
@@ -22,6 +24,19 @@ app.use(bodyParser.text());
 
 const router = express.Router()
 
+// app.use(express.static(path.join(__dirname, 'build')));
+
+// app.get('/', function (req, res) {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   });
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+    const path = require('path');
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 // console.log that your server is up and running
 //app.listen(port, () => console.log(`Listening on port ${port}`));
 // We need to use sessions to keep track of our user's login status
@@ -31,13 +46,16 @@ app.use(passport.session());
 
 require("./routes/htmlroutes.js")(app);
 require("./routes/apiRoutes")(app);
-
 // force: false won't create database if exists
-var syncOptions = { force: true };
+var syncOptions = { force: false};
+
+
 
 // set PORT for express
 // Heroku needs process.env.PORT
 var PORT = process.env.PORT || 5000;
+
+
 
 // If running a test, set syncOptions.force to true
 //  force : true clears the `testdb`
