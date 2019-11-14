@@ -15,6 +15,40 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+    // get route for getting nonprofits by category
+    // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
+    app.get('/api/get-categories', function (req, res) {
+
+        db.Category.findAll()
+            .then(function (results) {
+                res.json(results);
+            })
+            .catch(function (err) {
+                res.status(500);
+            });
+    });
+
+    // get route for getting nonprofits by category
+    // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
+    app.get('/api/get-np-by-category/category/:category', function (req, res) {
+
+        console.log(req.params);
+        console.log("category: ", req.params.category);
+        db.Nonprofit.findAll({
+            where: {
+                orgFocus: {
+                    [Op.like]: ["%" + req.params.category + "%"]
+                }
+            }
+        })
+            .then(function (results) {
+                res.json(results);
+            })
+            .catch(function (err) {
+                res.status(500);
+            });
+    });
+
     // post route for creating a new user
     app.post("/api/register", function (req, res) {
         console.log('Create User via register:', req.body);
