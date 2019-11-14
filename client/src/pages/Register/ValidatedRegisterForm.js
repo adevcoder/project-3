@@ -2,6 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 // import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
+
 const ValidatedRegisterForm = () => (
   <Formik
     initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
@@ -90,7 +91,7 @@ const ValidatedRegisterForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" href="/home" onClick={handleSubmit}>Submit</button>
+          <button type="submit" href="/home">Submitttttt</button>
         </form>
       );
     }}
