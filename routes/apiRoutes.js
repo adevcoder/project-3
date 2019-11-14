@@ -16,7 +16,20 @@ module.exports = function (app) {
     });
 
     // get route for getting nonprofits by category
-    // POSTMAN localhost:3000/api/fs/bedrooms/1/city/Los Angeles/rentlow/900/renthigh/1200
+    // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
+    app.get('/api/get-categories', function (req, res) {
+
+        db.Category.findAll()
+            .then(function (results) {
+                res.json(results);
+            })
+            .catch(function (err) {
+                res.status(500);
+            });
+    });
+
+    // get route for getting nonprofits by category
+    // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
     app.get('/api/get-np-by-category/category/:category', function (req, res) {
 
         console.log(req.params);
