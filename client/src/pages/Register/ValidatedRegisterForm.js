@@ -1,15 +1,17 @@
 import React from "react";
 import { Formik } from "formik";
-// import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
+import axios from "axios"
+
 const ValidatedRegisterForm = () => (
   <Formik
     initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        console.log("Logging in", values);
-        setSubmitting(false);
-      }, 500);
+        console.log("Registering...", values);
+        axios.post("/api/register", values)
+        .then(()=>{
+           setSubmitting(false);
+        })     
     }}
 
     validationSchema={Yup.object().shape({
@@ -22,7 +24,7 @@ const ValidatedRegisterForm = () => (
         .required("Required"),
       password: Yup.string()
         .required("No password provided")
-      // .min(8, "Password is too short - should be 8 chars minimum.")
+      .min(8, "Password is too short - should be 8 chars minimum.")
       // .matches(/(?=.*[0-9])/, "Password must contain a number.")
     })}
   >
@@ -31,7 +33,6 @@ const ValidatedRegisterForm = () => (
         values,
         touched,
         errors,
-        // isSubmitting,
         handleChange,
         handleBlur,
         handleSubmit
@@ -90,7 +91,7 @@ const ValidatedRegisterForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" href="/home" onClick={handleSubmit}>Submit</button>
+          <button type="submit" onClick={handleSubmit}>Submit</button>
         </form>
       );
     }}

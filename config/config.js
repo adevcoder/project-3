@@ -7,15 +7,7 @@ module.exports = {
         "port": 3306,
         "dialect": "mysql"
     },
-    "test": {
-        "username": "root",
-        "password": "root",
-        "database": "socal_charm",
-        "host": "socal_charm",
-        "dialect": "mysql",
-        "logging": false
-    },
-    "production": {
+      "production": {
         "use_env_variable": "JAWSDB_URL",
         "dialect": "mysql"
     }
