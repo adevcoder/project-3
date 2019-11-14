@@ -2,6 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 // import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
+import axios from "axios"
 
 const ValidatedRegisterForm = () => (
   <Formik
@@ -9,7 +10,10 @@ const ValidatedRegisterForm = () => (
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         console.log("Logging in", values);
-        setSubmitting(false);
+        axios.post('/api/register', values)
+        .then(()=>{
+           setSubmitting(false);
+        })     
       }, 500);
     }}
 
@@ -91,7 +95,7 @@ const ValidatedRegisterForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" href="/home">Submitttttt</button>
+          <button type="submit" href="/home" onClick={handleSubmit}>Submit</button>
         </form>
       );
     }}
