@@ -1,11 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   var Favorites = sequelize.define("Favorites", {
-    donationAmt: DataTypes.DECIMAL(10, 2),
-    donationPct: DataTypes.INTEGER,
-    donationFrequency: {
-      type: DataTypes.STRING(),
-      values: ['Monthly', 'Bi-Monthly', '3 months', '6 months', 'Yearly']
-    }
+    donationAmt: DataTypes.DECIMAL(10, 2)
   });
 
   Favorites.associate = function (models) {

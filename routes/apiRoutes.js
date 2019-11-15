@@ -15,6 +15,43 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+    // get route for getting favorites by userid
+    // POSTMAN GET localhost:5000/api/get-user-favorites/userid/2
+    app.get('/api/get-user-favorites/userid/:userid', function (req, res) {
+
+        console.log('Entering get-user-favorites:', req.params);
+        console.log("userId: ", req.params.userid);
+        db.Favorites.findAll({
+            where: {
+                UserId: req.params.userid
+            }
+        }).then(function (results) {
+            res.json(results);
+        }).catch(function (err) {
+            res.status(500);
+        });
+    });
+
+    // post route for saving a favorite nonprofit for a user                            
+    app.post("/api/favorite", function (req, res) {
+
+        console.log('Entering Create Favorite:', req.body);
+        // create() requires an object describing the new data we're adding to table
+        console.log('donationAmt:', req.body.donationAmt);
+        console.log('UserId:', req.body.userId);
+        console.log('donNonprofitIdationAmt:', req.body.nonprofitId);
+        db.Favorites.create({
+            donationAmt: req.body.donationAmt,
+            UserId: req.body.userId,
+            NonprofitId: req.body.nonprofitId
+        }).then(function (results) {
+            res.json(results);
+        }).catch(function (err) {
+            //replace with better err handler
+            console.log(err)
+        });
+    });
+
     // get route for getting nonprofits by category
     // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
     app.get('/api/get-categories', function (req, res) {
@@ -66,30 +103,6 @@ module.exports = function (app) {
             res.status(401).json(err);
         });
     });
-
-    // post route for saving a new unit to database
-    app.post("/api/create-user", function (req, res) {
-
-        //console.log('Create User Data:', req.body);
-        console.log('Create User Data:', req.body);
-        bcrypt.hash(req.body.password, 10, function (err, password) {
-            console.log("hash: ", password);
-            // create() requires an object describing the new data we're adding to table
-            db.User.create({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: password,
-                userType: req.body.userType
-            }).then(function (results) {
-                res.json(results);
-            }).catch(function (err) {
-                //replace with better err handler
-                console.log(err)
-            });
-        });
-    });
-
     app.post("/api/login", passport.authenticate("local"), function (req, res) {
         res.json(req.user);
     });
