@@ -29,11 +29,7 @@ module.exports = function (sequelize, DataTypes) {
                     args: 8
                 }
             }
-        },
-        userType: {
-            type: DataTypes.STRING(),
-            values: ['nonprofit', 'user']
-        },
+        }
     });
 
     User.associate = function (models) {
