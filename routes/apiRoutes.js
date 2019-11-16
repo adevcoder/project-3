@@ -15,6 +15,25 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+    app.get('/api/delete-favorite/favoriteId/:favoriteId', function (req, res) {
+        console.log("favoriteId: ", req.params.favoriteId);
+        db.Favorites.destroy({
+            where: {
+                id: req.params.favoriteId
+            }
+        }).then(function (rowDeleted) { // rowDeleted will return number of rows deleted
+            if (rowDeleted === 1) {
+                console.log('Favorite Record deleted successfully');
+            }
+            else {
+                console.log('Favorite Record was not deleted');
+            }
+            res.json(rowDeleted);
+        }, function (err) {
+            console.log(err);
+        });
+
+    });
     // get route for getting favorites by userid
     // POSTMAN GET localhost:5000/api/get-user-favorites/userid/2
     app.get('/api/get-user-favorites/userid/:userid', function (req, res) {
@@ -52,7 +71,7 @@ module.exports = function (app) {
         });
     });
 
-    // get route for getting nonprofits by category
+    // get route for getting (nonprofit) categories
     // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
     app.get('/api/get-categories', function (req, res) {
 
