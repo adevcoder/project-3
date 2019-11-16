@@ -1,11 +1,14 @@
 import React from "react";
 import "./styles.css";
-import HomePage from "./HomePage";
+import ButtonCategory from "../../components/Buttons/ButtonCategory"
+import { NonprofitList, NonprofitListItem } from "../../components/NonprofitList/index"
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <ButtonCategory />
+      <NonprofitList />
+      <NonprofitListItem />
     </div>
   );
 }

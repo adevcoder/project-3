@@ -1,17 +1,22 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { withRouter } from "react-router-dom";
 import axios from "axios"
 
-const ValidatedRegisterForm = () => (
+const ValidatedRegisterForm = (props) => (
   <Formik
     initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
         console.log("Registering...", values);
         axios.post("/api/register", values)
-        .then(()=>{
-           setSubmitting(false);
-        })     
+        .then(() => {
+           props.history.push("/home");
+           setSubmitting(false);          
+        })
+        .catch(err => {
+          console.log(err);
+        }) 
     }}
 
     validationSchema={Yup.object().shape({
@@ -98,4 +103,4 @@ const ValidatedRegisterForm = () => (
   </Formik>
 );
 
-export default ValidatedRegisterForm;
+export default withRouter(ValidatedRegisterForm);

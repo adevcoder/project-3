@@ -22,8 +22,8 @@ export class LoginForm extends React.Component {
       email: "",
       password: ""
     });
-    fetch("/user", {
-      method: "POST",
+    fetch("/api/login", {
+      method: "GET",
       data: {
         firstName: this.refs.firstName,
         lastName: this.refs.lastName
