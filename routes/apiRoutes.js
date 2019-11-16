@@ -15,6 +15,32 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+    // post route for saving a favorite nonprofit for a user                            
+    app.post("/api/update-favorite", function (req, res) {
+
+        console.log('Entering Update Favorite:', req.body);
+        // create() requires an object describing the new data we're adding to table
+        console.log('donationAmt:', req.body.donationAmt);
+        console.log('UserId:', req.body.UserId);
+        console.log('NonprofitId:', req.body.NonprofitId);
+        db.Favorites.update({
+            donationAmt: req.body.donationAmt
+        },
+            {
+                where: {
+                    UserId: req.body.UserId,
+                    NonprofitId: req.body.NonprofitId
+                }
+            }
+        ).then(function (results) {
+            console.log(results);
+            res.json(results);
+        }).catch(function (err) {
+            //replace with better err handler
+            console.log(err)
+        });
+    });
+
     app.get('/api/delete-favorite/favoriteId/:favoriteId', function (req, res) {
         console.log("favoriteId: ", req.params.favoriteId);
         db.Favorites.destroy({
