@@ -24,9 +24,13 @@ export function NonprofitListItem({
                 {!saved ? (
                     <button
                         className="btn btn-success"
-                        onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save</button>
+                        onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
+                    </button>
                 ) : (
-                        <button className="btn btn-danger" onClick={event => clickEvent(event, id)}>Unsave</button>
+                    <button 
+                        className="btn btn-danger" 
+                        onClick={event => clickEvent(event, id)}>Unsave
+                    </button>
                     )
                 }
                 <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>

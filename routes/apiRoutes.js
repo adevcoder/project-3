@@ -45,27 +45,35 @@ module.exports = function (app) {
                 res.json(results);
             })
             .catch(function (err) {
-                res.status(500);
+                res.status(500).send(err);
             });
     });
 
     // post route for creating a new user
     app.post("/api/register", function (req, res) {
-        console.log('Create User via register:', req.body);
-        db.User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password
-        }).then(function () {
-            console.log('Created User via register');
-            res.redirect(307, "/api/login");
-        }).catch(function (err) {
-            console.log('Error Creating User via register');
-            console.log("error: ", err);
-            res.status(401).json(err);
+
+        //console.log('Create User Data:', req.body);
+        //console.log('Create User Data:', req.body);
+        bcrypt.hash(req.body.password, 10, function (err, password) {
+            //console.log("hash: ", req);
+            // create() requires an object describing the new data we're adding to table
+            db.User.create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: password,
+                userType: req.body.userType
+            }).then(function (results) {
+                // res.json(results);
+                res.sendStatus(200)
+            })
+            // .catch(function (err) {
+            //     //replace with better err handler
+            //     console.log(err)
+            // });
         });
     });
+
 
     // post route for saving a new unit to database
     app.post("/api/create-user", function (req, res) {

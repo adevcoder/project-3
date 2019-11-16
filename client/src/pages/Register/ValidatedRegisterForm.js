@@ -1,37 +1,35 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { withRouter } from "react-router-dom";
 import axios from "axios"
+import { withRouter } from "react-router-dom"
 
 const ValidatedRegisterForm = (props) => (
   <Formik
     initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
-        console.log("Registering...", values);
-        axios.post("/api/register", values)
+      console.log("Registering...", values);
+      axios.post("/api/register", values)
         .then(() => {
-           props.history.push("/home");
-           setSubmitting(false);          
+          setSubmitting(false);
+          props.history.push('/home')
         })
-        .catch(err => {
-          console.log(err);
-        }) 
     }}
 
-    validationSchema={Yup.object().shape({
-      firstName: Yup.string()
-        .required("Required"),
-      lastName: Yup.string()
-        .required("Required"),
-      email: Yup.string()
-        .email()
-        .required("Required"),
-      password: Yup.string()
-        .required("No password provided")
-      .min(8, "Password is too short - should be 8 chars minimum.")
-      // .matches(/(?=.*[0-9])/, "Password must contain a number.")
-    })}
+
+  validationSchema={Yup.object().shape({
+    firstName: Yup.string()
+      .required("Required"),
+    lastName: Yup.string()
+      .required("Required"),
+    email: Yup.string()
+      .email()
+      .required("Required"),
+    password: Yup.string()
+      .required("No password provided")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    // .matches(/(?=.*[0-9])/, "Password must contain a number.")
+  })}
   >
     {props => {
       const {
