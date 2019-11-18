@@ -5,7 +5,8 @@ export class LoginForm extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loginError: ""
     };
   }
 
@@ -58,6 +59,7 @@ export class LoginForm extends React.Component {
           onChange={this.handleChange}
         />
         <button type="submit" href="/home" onClick={this.handleSubmit}>Submit</button>
+        <span id="errorMsg"></span>
       </form>
     );
   }
