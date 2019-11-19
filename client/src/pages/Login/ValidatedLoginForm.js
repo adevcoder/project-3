@@ -21,9 +21,10 @@ const ValidatedLoginForm = (props) => (
           console.log(error.response.data)
           if (error.response.data === "Unauthorized") {
             console.log("Username or Password Incorrect!");
-            this.setState({
-              LoginError: "username or passwork"
-            });
+            alert("Login Error: Username or Password incorrect!")
+           // this.setState({
+           //   LoginError: "username or password"
+          //  });
           }
         });
 
