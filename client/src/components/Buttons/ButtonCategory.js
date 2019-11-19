@@ -2,12 +2,18 @@ import React from "react";
 
 class Buttons extends React.Component {
 
+    state = {
+        nonprofits: []
+    }
     handleClick = (event) => {
         console.log(event.target.value);
         const name = event.target.value;
         fetch(`/api/get-np-by-category/category/${name}`)
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then((data) => {
+                this.props.setnonprofits(data);
+                console.log("data: ",data);
+            })
             .catch(err => console.error(err))
     }
 
@@ -17,8 +23,7 @@ class Buttons extends React.Component {
 
             <div className="jumbotron">
 
-                <h2 className= "display-4">Please choose category of your interest</h2>
-
+                <h2 className="display-4">Please choose category of your interest</h2>
                 <button value="Poverty and Hunger" name="Poverty and Hunger" onClick={this.handleClick}>Poverty</button>
                 <button value="Education and Academia" name="Education and Academia" onClick={this.handleClick}>Education</button>
                 <button value="Human Rights and Civil Liberties, Immigration" name="Human Rights and Civil Liberties, Immigration" onClick={this.handleClick}>Immigration</button>

@@ -1,22 +1,30 @@
 import React from "react";
 
-export function NonprofitList({ children }) {
+export function NonprofitList({ nonprofits }) {
     return (
-        <ul className="list-group">{children}</ul>
+        <ul className="list-group">{nonprofits.map(item => {
+            return (<NonprofitListItem item={item} key={item.id} />)
+        })
+        }</ul>
     );
 };
 
 export function NonprofitListItem({
-    id,
-    orgName,
-    city,
-    state,
-    orgFocus,
-    url,
-    clickEvent,
-    saved
+    item
 }) {
-
+    if (!item) {
+        return null;        
+    }
+    const { id,
+        orgName,
+        city,
+        state,
+        zip,
+        orgFocus,
+        url,
+        clickEvent,
+        saved
+    } = item;
     return (
         <li className="list-group-item m-2">
 
@@ -27,22 +35,22 @@ export function NonprofitListItem({
                         onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
                     </button>
                 ) : (
-                    <button 
-                        className="btn btn-danger" 
-                        onClick={event => clickEvent(event, id)}>Unsave
+                        <button
+                            className="btn btn-danger"
+                            onClick={event => clickEvent(event, id)}>Unsave
                     </button>
                     )
                 }
                 <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
             </div>
-            
+
             <h3 className="font-weight-bold">{orgName}</h3>
 
-            <h4>{orgFocus}</h4>
+            <h5>Org Focus: {orgFocus}</h5>
 
-            <h5>{city} {state}</h5>
+            <h5>{city}, {state.toUpperCase()} {zip}</h5>
 
-            <button href={url}>Link to Organization</button>
+            {url ? <a href={url} className="btn btn-success" target="_blank">Link to Organization</a> : null}
 
         </li>
 
