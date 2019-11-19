@@ -44,13 +44,13 @@ export function NonprofitListItem({
                 <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
             </div>
 
-            <h3 className="font-weight-bold">{orgName}</h3>
+            <h4 className="font-weight-bold">{orgName}</h4>
 
             <h5>Org Focus: {orgFocus}</h5>
 
             <h5>{city}, {state.toUpperCase()} {zip}</h5>
 
-            {url ? <a href={url} className="btn btn-success" target="_blank">Link to Organization</a> : null}
+            {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
 
         </li>
 

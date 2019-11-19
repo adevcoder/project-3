@@ -23,7 +23,7 @@ class Buttons extends React.Component {
 
             <div className="jumbotron">
 
-                <h2 className="display-4">Please choose category of your interest</h2>
+                <h3 className="display-4">Please choose a category of interest</h3>
                 <button value="Poverty and Hunger" name="Poverty and Hunger" onClick={this.handleClick}>Poverty</button>
                 <button value="Education and Academia" name="Education and Academia" onClick={this.handleClick}>Education</button>
                 <button value="Human Rights and Civil Liberties, Immigration" name="Human Rights and Civil Liberties, Immigration" onClick={this.handleClick}>Immigration</button>
