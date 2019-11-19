@@ -21,7 +21,7 @@ const router = express.Router()
 //app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // force: false won't create database if exists
-var syncOptions = { force: false};
+var syncOptions = { force: true};
 
 
 // set PORT for express
@@ -31,7 +31,7 @@ var PORT = process.env.PORT || 5000;
 // If running a test, set syncOptions.force to true
 //  force : true clears the `testdb`
 if (process.env.NODE_ENV === "test") {
-    syncOptions.force = true;
+    syncOptions.force = falser;
 }
 
 // Syncing models  to database & then starts the server 
@@ -39,7 +39,7 @@ db.sequelize.sync(syncOptions).then(function() {
     app.listen(PORT, function() {
         console.log(
             "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-            PORT,
+            PORT, 
             PORT
         );
     });

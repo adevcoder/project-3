@@ -1,6 +1,6 @@
 module.exports = {
     "development": {
-        "username": process.env.MYSQL_USERNME,
+        "username": process.env.MYSQL_USERNAME,
         "password": process.env.MYSQL_KEY,
         "database": process.env.MYSQL_DBNAME,
         "host": process.env.MYSQL_HOST,

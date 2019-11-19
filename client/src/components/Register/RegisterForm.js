@@ -65,7 +65,8 @@ export class RegisterForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Submittttt</button>
+        <button className="btn btn-primary">click</button>
       </form>
     );
   }

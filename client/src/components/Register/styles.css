@@ -4,6 +4,7 @@
   
   h1 {
     text-align: center;
+    color:purple;
   }
   
   form {
@@ -16,6 +17,7 @@
   input {
     display: block;
     width: 100%;
+    color:blue;
   }
   
   label {

@@ -1,3 +1,22 @@
 .btn {
     margin-left: 15px;;
 }
+p {
+    color: purple;
+}
+
+h2 {
+    color:#00BFFF;
+    text-align: center;
+}
+.carousel-inner{
+    left: 350px;
+}
+.display-4 {
+    left: 500px;
+}
+.jumbotron{
+background-color: white !important;
+
+}
+

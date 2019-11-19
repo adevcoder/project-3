@@ -90,7 +90,7 @@ const ValidatedRegisterForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" onClick={isSubmitting}>Submit</button>
+          <button type="submit" onClick={isSubmitting}>Submittttt</button>
         </form>
       );
     }}
