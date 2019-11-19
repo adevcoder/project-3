@@ -2,9 +2,9 @@ import React from "react";
 
 export function NonprofitList({ nonprofits }) {
     return (
-        <ul className="list-group">{nonprofits.map(item => {
-            return (<NonprofitListItem item={item} key={item.id} />)
-        })
+        <ul className="list-group">{ nonprofits ? nonprofits.map(item => {
+        return (<NonprofitListItem item={item} key={item.id} />)
+        }) : ""
         }</ul>
     );
 };
