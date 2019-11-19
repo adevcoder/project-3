@@ -2,15 +2,34 @@ import React from "react";
 import { Formik } from "formik";
 // import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
-const ValidatedLoginForm = () => (
+import axios from "axios";
+import { withRouter } from "react-router-dom";
+
+
+const ValidatedLoginForm = (props) => (
   <Formik
     initialValues={{ email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        console.log("Logging in", values);
-        setSubmitting(false);
-      }, 500);
+      console.log("Loging in ...", values);
+      console.log("props.history: " + props.history);
+      axios.post("/api/login", values)
+        .then(() => {
+          setSubmitting(false);
+          props.history.push('/home')
+        }).catch(error => {
+          console.log("error.response: ", error.response)
+          console.log(error.response.data)
+          if (error.response.data === "Unauthorized") {
+            console.log("Username or Password Incorrect!");
+            alert("Login Error: Username or Password incorrect!")
+           // this.setState({
+           //   LoginError: "username or password"
+          //  });
+          }
+        });
+
     }}
+
 
     validationSchema={Yup.object().shape({
       email: Yup.string()
@@ -67,4 +86,5 @@ const ValidatedLoginForm = () => (
   </Formik>
 );
 
-export default ValidatedLoginForm;
+export default withRouter(ValidatedLoginForm);
+//export default ValidatedLoginForm;

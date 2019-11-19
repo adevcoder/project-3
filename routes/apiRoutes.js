@@ -15,7 +15,89 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
-    // get route for getting nonprofits by category
+    // post route for saving a favorite nonprofit for a user                            
+    app.post("/api/update-favorite", function (req, res) {
+
+        console.log('Entering Update Favorite:', req.body);
+        // create() requires an object describing the new data we're adding to table
+        console.log('donationAmt:', req.body.donationAmt);
+        console.log('UserId:', req.body.UserId);
+        console.log('NonprofitId:', req.body.NonprofitId);
+        db.Favorites.update({
+            donationAmt: req.body.donationAmt
+        },
+            {
+                where: {
+                    UserId: req.body.UserId,
+                    NonprofitId: req.body.NonprofitId
+                }
+            }
+        ).then(function (results) {
+            console.log(results);
+            res.json(results);
+        }).catch(function (err) {
+            //replace with better err handler
+            console.log(err)
+        });
+    });
+
+    app.get('/api/delete-favorite/favoriteId/:favoriteId', function (req, res) {
+        console.log("favoriteId: ", req.params.favoriteId);
+        db.Favorites.destroy({
+            where: {
+                id: req.params.favoriteId
+            }
+        }).then(function (rowDeleted) { // rowDeleted will return number of rows deleted
+            if (rowDeleted === 1) {
+                console.log('Favorite Record deleted successfully');
+            }
+            else {
+                console.log('Favorite Record was not deleted');
+            }
+            res.json(rowDeleted);
+        }, function (err) {
+            console.log(err);
+        });
+
+    });
+    // get route for getting favorites by userid
+    // POSTMAN GET localhost:5000/api/get-user-favorites/userid/2
+    app.get('/api/get-user-favorites/userid/:userid', function (req, res) {
+
+        console.log('Entering get-user-favorites:', req.params);
+        console.log("userId: ", req.params.userid);
+        db.Favorites.findAll({
+            where: {
+                UserId: req.params.userid
+            }
+        }).then(function (results) {
+            res.json(results);
+        }).catch(function (err) {
+            res.status(500);
+        });
+    });
+
+    // post route for saving a favorite nonprofit for a user                            
+    app.post("/api/favorite", function (req, res) {
+
+        console.log('Entering Create Favorite:', req.body);
+        // create() requires an object describing the new data we're adding to table
+        console.log('donationAmt:', req.body.donationAmt);
+        console.log('UserId:', req.body.userId);
+        console.log('donNonprofitIdationAmt:', req.body.nonprofitId);
+        db.Favorites.create({
+            donationAmt: req.body.donationAmt,
+            UserId: req.body.userId,
+            NonprofitId: req.body.nonprofitId
+        }).then(function (results) {
+            res.json(results);
+        }).catch(function (err) {
+            //replace with better err handler
+            console.log(err)
+        });
+    });
+
+    // get route for getting (nonprofit) categories
     // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
     app.get('/api/get-categories', function (req, res) {
 
@@ -99,6 +181,7 @@ module.exports = function (app) {
     });
 
     app.post("/api/login", passport.authenticate("local"), function (req, res) {
+        console.log("/api/login called");
         res.json(req.user);
     });
 
