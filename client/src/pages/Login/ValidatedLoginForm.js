@@ -18,8 +18,8 @@ const ValidatedLoginForm = (props) => (
           props.history.push('/home')
         }).catch(error => {
           console.log("error.response: ", error.response)
-          console.log(error.response.data)
-          if (error.response.data === "Unauthorized") {
+          //console.log(error.response.data)
+          if (error && error.response && error.response.data === "Unauthorized") {
             console.log("Username or Password Incorrect!");
             alert("Login Error: Username or Password incorrect!")
            // this.setState({
