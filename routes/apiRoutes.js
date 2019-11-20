@@ -87,15 +87,16 @@ module.exports = function (app) {
         console.log('donNonprofitIdationAmt:', req.body.nonprofitId);
         db.Favorites.create({
             donationAmt: req.body.donationAmt,
-            UserId: req.body.userId,
-            NonprofitId: req.body.nonprofitId
+            NonprofitId: req.body.NonprofitId,
+            UserId: req.body.UserId
         }).then(function (results) {
-            res.json(results);
+            //res.json(results);
+            res.sendStatus(200)
         }).catch(function (err) {
-            //replace with better err handler
-            console.log(err)
+            res.status(500);
         });
     });
+
 
     // get route for getting (nonprofit) categories
     // POSTMAN localhost:5000/api/get-np-by-category/category/Youth Services
@@ -117,6 +118,13 @@ module.exports = function (app) {
         console.log(req.params);
         console.log("category: ", req.params.category);
         db.Nonprofit.findAll({
+            //      LEFT JOIN `Favorites` ON `Nonprofits`.`id` = `Favorites`.`NonprofitId`   
+            //WHERE orgFocus LIKE '%Health and Medicine%'
+           // favoriteId
+            //include: [
+            //    {model: db.User, attributes: ['id', 'nickname'], paranoid: false, required: true},
+            //    {model: db.Contact, attributes: ['id', 'name', 'surname'], paranoid: false, where: {is_main_contact: true}, required: false}
+            //];
             where: {
                 orgFocus: {
                     [Op.like]: ["%" + req.params.category + "%"]

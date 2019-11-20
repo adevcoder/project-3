@@ -1,14 +1,30 @@
-import React from "react";
-import axios from "axios";
+
+import  React , { Component } from "react";
+import Modal from 'react-modal';
+import "./style.css";
+import Axios from "axios";
+
 
 export function NonprofitList({ nonprofits }) {
     return (
-        <ul className="list-group">{ nonprofits ? nonprofits.map(item => {
-        return (<NonprofitListItem item={item} key={item.id} />)
-        }) : ""
+        <ul className="list-group">{nonprofits.map(item => {
+            return (<NonprofitListItem item={item} key={item.id} />)
+        })
         }</ul>
     );
 };
+
+
+
+
+export function NonprofitListItem({ item }) 
+{
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+    const [JobModalId,JobId] = React.useState("");
+    const [modalForm,setModalForm] = React.useState({
+      donationAmount: "",
+    })
+
 
 // handleSaveButton = event => {
 //     event.preventDefault();
@@ -17,12 +33,11 @@ export function NonprofitList({ nonprofits }) {
 //     .catch(err => console.log(err));
 // }
 
-export function NonprofitListItem({
-    item
-}) {
     if (!item) {
         return null;
     }
+    var subtitle;
+
     const { id,
         orgName,
         city,
@@ -33,34 +48,156 @@ export function NonprofitListItem({
         clickEvent,
         saved
     } = item;
-        return (
-        <li className="list-group-item m-2">
 
-            <div className="float-right">
-                {!saved ? (
-                    <button
-                        className="btn btn-success"
-                        onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
-                    </button>
-                ) : (
-                    <button
-                        className="btn btn-danger"
-                        onClick={event => clickEvent(event, id)}>Unsave
-                    </button>
-                    )
-                }
-                <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
-            </div>
+    const customStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)'
+        }
+      };
 
-            <h4 className="font-weight-bold">{orgName}</h4>
+      function openModal(item , id) {
+        setIsOpen(true);
+        //console.log('address' , item.address);
+        JobId(id);
+      }
+    
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        subtitle.style.color = '#f00';
+      }
 
-            <h5>Org Focus: {orgFocus}</h5>
+      function closeModal(){
+        setIsOpen(false);
+      }
 
-            <h5>{city}, {state.toUpperCase()} {zip}</h5>
+      var handleDonationSubmit = (event) => {
+        event.preventDefault()
+        console.log(event);
+        console.log('JobModalId',JobModalId)
+        console.log('inp value',modalForm.donationAmount)
+        const values = {
+          NonprofitId : JobModalId,
+          UserId : 2,
+          donationAmt : modalForm.donationAmount
+        }
+        Axios.post('/api/favorite' ,  values)
+        .then(() => {
+          setIsOpen(false);
+          setModalForm({
+            ...modalForm,
+            donationAmount: ""
+          })
+        }).catch( error => {
+          console.log("error.response: ", error.response)
+        })
+      }
 
-            {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
+      var donationChange = (event) => {
+        const {value} = event.target
+        // console.log(value)
+        setModalForm({
+          ...modalForm,
+          donationAmount: value
+        })
+      }
+    
+    
+    var DeleteFavourite = (item , id) => {
+      console.log(item.id);
+      var favoriteId = 1; //item.id;
+      Axios.get('/api/delete-favorite/favoriteId/'+favoriteId)
+      .then(() => {
 
-        </li>
+      }).catch( error => {
+          console.log("error.response: ", error.response)
+      })
+    } 
+ 
+    return (
+        <div>
+            <li className="list-group-item m-2">
+
+                <div className="float-right">
+                    {!saved ? (
+                        <button
+                            className="btn btn-success"
+                            onClick={event => openModal(item, id)} >Save
+                        </button>
+                    ) : (
+                            <button
+                                className="btn btn-danger"
+                                onClick={event => clickEvent(event, id)}>Unsave
+                        </button>
+                        )
+                    }
+                    <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavourite(item, id)}>Delete</button>
+                </div>
+
+                <h4 className="font-weight-bold">{orgName}</h4>
+
+                <h5>Org Focus: {orgFocus}</h5>
+
+                <h5>{city}, {state.toUpperCase()} {zip}</h5>
+
+//         return (
+//         <li className="list-group-item m-2">
+
+//             <div className="float-right">
+//                 {!saved ? (
+//                     <button
+//                         className="btn btn-success"
+//                         onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
+//                     </button>
+//                 ) : (
+//                     <button
+//                         className="btn btn-danger"
+//                         onClick={event => clickEvent(event, id)}>Unsave
+//                     </button>
+//                     )
+//                 }
+//                 <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
+//             </div>
+
+                {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
+
+            </li>
+        
+            <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="This is Modal">
+            
+            <a className="closeButton" onClick={closeModal}>X</a>
+            <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2> 
+          
+            <form onSubmit={handleDonationSubmit}>
+              <input  name="NonprofitId" type="hidden" value={JobModalId}/>
+              <input
+                name="donationAmt"
+                type="number"
+                placeholder="Enter Donation Amount."
+                value={modalForm.donationAmount}
+                onChange={donationChange}
+              />
+              <button type="submit">Submit</button>
+            </form>
+        </Modal>
+
+      </div>
 
     )
 }
+
+
+
+
+    )
+}
+
