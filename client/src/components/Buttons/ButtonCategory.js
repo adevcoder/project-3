@@ -8,15 +8,19 @@ class Buttons extends React.Component {
     }
     componentDidMount() {
         fetch('/api/get-categories')
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({
-                    categories: data
-                })
 
-                console.log("categories data: ", data);
-            })
-            .catch(err => console.error(err))
+        .then(res => res.text())          // convert to plain text
+        .then(text => console.log(text))  // then log it out
+
+            // //.then(res => res.json())
+            // .then((data) => {
+            //     this.setState({
+            //         categories: data
+            //     })
+
+            //     console.log("categories data: ", data);
+            // })
+            // .catch(err => console.error(err))
 
 
     }

@@ -1,7 +1,9 @@
+
 import  React , { Component } from "react";
 import Modal from 'react-modal';
 import "./style.css";
 import Axios from "axios";
+
 
 export function NonprofitList({ nonprofits }) {
     return (
@@ -14,6 +16,7 @@ export function NonprofitList({ nonprofits }) {
 
 
 
+
 export function NonprofitListItem({ item }) 
 {
     const [modalIsOpen,setIsOpen] = React.useState(false);
@@ -21,6 +24,14 @@ export function NonprofitListItem({ item })
     const [modalForm,setModalForm] = React.useState({
       donationAmount: "",
     })
+
+
+// handleSaveButton = event => {
+//     event.preventDefault();
+//     axios.post("/api/update-favorite")
+//     .then(res => console.log(res))
+//     .catch(err => console.log(err));
+// }
 
     if (!item) {
         return null;
@@ -133,6 +144,25 @@ export function NonprofitListItem({ item })
 
                 <h5>{city}, {state.toUpperCase()} {zip}</h5>
 
+//         return (
+//         <li className="list-group-item m-2">
+
+//             <div className="float-right">
+//                 {!saved ? (
+//                     <button
+//                         className="btn btn-success"
+//                         onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
+//                     </button>
+//                 ) : (
+//                     <button
+//                         className="btn btn-danger"
+//                         onClick={event => clickEvent(event, id)}>Unsave
+//                     </button>
+//                     )
+//                 }
+//                 <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
+//             </div>
+
                 {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
 
             </li>
@@ -165,4 +195,9 @@ export function NonprofitListItem({ item })
     )
 }
 
+
+
+
+    )
+}
 
