@@ -10,7 +10,6 @@ class Buttons extends React.Component {
         fetch('/api/get-categories')
             .then(res => res.json())
             .then((data) => {
-                // this.props.setnonprofits(data);
                 this.setState({
                     categories: data
                 })

@@ -13,7 +13,7 @@ export function NonprofitListItem({
     item
 }) {
     if (!item) {
-        return null;        
+        return null;
     }
     const { id,
         orgName,
@@ -25,7 +25,7 @@ export function NonprofitListItem({
         clickEvent,
         saved
     } = item;
-    return (
+        return (
         <li className="list-group-item m-2">
 
             <div className="float-right">
@@ -54,5 +54,5 @@ export function NonprofitListItem({
 
         </li>
 
-    )
+        )
 }
