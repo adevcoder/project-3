@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 export function NonprofitList({ nonprofits }) {
     return (
@@ -8,6 +9,13 @@ export function NonprofitList({ nonprofits }) {
         }</ul>
     );
 };
+
+// handleSaveButton = event => {
+//     event.preventDefault();
+//     axios.post("/api/update-favorite")
+//     .then(res => console.log(res))
+//     .catch(err => console.log(err));
+// }
 
 export function NonprofitListItem({
     item
@@ -35,9 +43,9 @@ export function NonprofitListItem({
                         onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
                     </button>
                 ) : (
-                        <button
-                            className="btn btn-danger"
-                            onClick={event => clickEvent(event, id)}>Unsave
+                    <button
+                        className="btn btn-danger"
+                        onClick={event => clickEvent(event, id)}>Unsave
                     </button>
                     )
                 }
@@ -54,5 +62,5 @@ export function NonprofitListItem({
 
         </li>
 
-        )
+    )
 }
