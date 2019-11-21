@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
+import Saved from "./pages/Saved"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/saved" component={Saved} />
         </Switch>
       </div>
     </Router>
