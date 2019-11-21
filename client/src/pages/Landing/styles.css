@@ -1,22 +1,52 @@
 .btn {
     margin-left: 15px;;
+    border: 2px solid red;
+    left: 100px;
+    position: center;
 }
 p {
     color: purple;
+    border: 1px solid red;
+    font-weight: bold;
 }
 
 h2 {
     color:#00BFFF;
     text-align: center;
+    border: 1px solid red;
+    margin-top: -100px;
 }
 .carousel-inner{
     left: 350px;
+    border: 1px solid red;
 }
 .display-4 {
     left: 500px;
+    border: 1px solid red;
+    top:0;
+  
 }
 .jumbotron{
 background-color: white !important;
 
 }
 
+img {
+    /* width: 100%; */
+}
+
+.carousel  {
+    /* border: 2px solid red; */
+    width: 400px;
+}
+.App {
+    border: 1px solid red;
+}
+
+.lead{
+    font-weight: bold;
+}
+
+.carousel-inner{
+    right:100px;
+}
