@@ -78,7 +78,7 @@ const ValidatedLoginForm = (props) => {
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          {(pass_err) ? <span class="login-error"><p>Incorrect Email or Password Entered!</p></span> : null}
+          {(pass_err) ? <span className="login-error"><p>Incorrect Email or Password Entered!</p></span> : null}
           <button type="submit" href="/home" onClick={handleSubmit}>Submit</button>
         </form>
       );
