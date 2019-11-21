@@ -1,9 +1,8 @@
-
-import  React , { Component } from "react";
+//import  React , { Component } from "react";
+import  React  from "react";
 import Modal from 'react-modal';
 import "./style.css";
 import Axios from "axios";
-
 
 export function NonprofitList({ nonprofits }) {
     return (
@@ -14,9 +13,6 @@ export function NonprofitList({ nonprofits }) {
     );
 };
 
-
-
-
 export function NonprofitListItem({ item }) 
 {
     const [modalIsOpen,setIsOpen] = React.useState(false);
@@ -24,14 +20,6 @@ export function NonprofitListItem({ item })
     const [modalForm,setModalForm] = React.useState({
       donationAmount: "",
     })
-
-
-// handleSaveButton = event => {
-//     event.preventDefault();
-//     axios.post("/api/update-favorite")
-//     .then(res => console.log(res))
-//     .catch(err => console.log(err));
-// }
 
     if (!item) {
         return null;
@@ -78,8 +66,8 @@ export function NonprofitListItem({ item })
       var handleDonationSubmit = (event) => {
         event.preventDefault()
         console.log(event);
-        console.log('JobModalId',JobModalId)
-        console.log('inp value',modalForm.donationAmount)
+        console.log('Nonprofit Id: ',JobModalId)
+        console.log("Donation Amount: " ,modalForm.donationAmount)
         const values = {
           NonprofitId : JobModalId,
           UserId : 2,
@@ -107,8 +95,9 @@ export function NonprofitListItem({ item })
       }
     
     
-    var DeleteFavourite = (item , id) => {
-      console.log(item.id);
+    var DeleteFavorite = (item , id) => {
+      console.log("id: ", id);
+      console.log("deleteFavorite item.id: ", item.id);
       var favoriteId = 1; //item.id;
       Axios.get('/api/delete-favorite/favoriteId/'+favoriteId)
       .then(() => {
@@ -135,7 +124,7 @@ export function NonprofitListItem({ item })
                         </button>
                         )
                     }
-                    <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavourite(item, id)}>Delete</button>
+                    <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavorite(item, id)}>Delete</button>
                 </div>
 
                 <h4 className="font-weight-bold">{orgName}</h4>
@@ -143,57 +132,39 @@ export function NonprofitListItem({ item })
                 <h5>Org Focus: {orgFocus}</h5>
 
                 <h5>{city}, {state.toUpperCase()} {zip}</h5>
-                </li>
-                </div>
-    )
-    //    <li className="list-group-item m-2">
-    //         <div className="float-right">                 {!saved ? (
-    //                 <button
-    //                     className="btn btn-success"
-    //                     onClick={event => clickEvent(event, id, orgName, city, state, orgFocus, url)}>Save
-    //                 </button>
-    //             ) : (
-    //                 <button
-    //                     className="btn btn-danger"
-    //                     onClick={event => clickEvent(event, id)}>Unsave
-    //                 </button>
-    //                 )
-    //             }
-    //             <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
-    //         </div>
 
-    //             <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a>
 
-    //        </li> */
+                {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
+
+            </li>
+
         
-//             <Modal
-//             isOpen={modalIsOpen}
-//             onAfterOpen={afterOpenModal}
-//             onRequestClose={closeModal}
-//             style={customStyles}
-//             contentLabel="This is Modal">
+            <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="This is Modal">
             
-//             <a className="closeButton" onClick={closeModal}>X</a>
-//             <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2> 
+            <a className="closeButton" onClick={closeModal}>X</a>
+            <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2> 
           
-//             <form onSubmit={handleDonationSubmit}>
-//               <input  name="NonprofitId" type="hidden" value={JobModalId}/>
-//               <input
-//                 name="donationAmt"
-//                 type="number"
-//                 placeholder="Enter Donation Amount."
-//                 value={modalForm.donationAmount}
-//                 onChange={donationChange}
-//               />
-//               <button type="submit">Submit</button>
-//             </form>
-//         </Modal>
+            <form onSubmit={handleDonationSubmit}>
+              <input  name="NonprofitId" type="hidden" value={JobModalId}/>
+              <input
+                name="donationAmt"
+                type="number"
+                placeholder="Enter Donation Amount."
+                value={modalForm.donationAmount}
+                onChange={donationChange}
+              />
+              <button type="submit">Submit</button>
+            </form>
+        </Modal>
 
 
 
 
 
-
-//     )
-// }
+     ) }
                 }
