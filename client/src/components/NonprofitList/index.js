@@ -167,28 +167,28 @@ export function NonprofitListItem({ item })
 
            // </li>
         
-            <Modal
-            isOpen={modalIsOpen}
-            onAfterOpen={afterOpenModal}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="This is Modal">
+//             <Modal
+//             isOpen={modalIsOpen}
+//             onAfterOpen={afterOpenModal}
+//             onRequestClose={closeModal}
+//             style={customStyles}
+//             contentLabel="This is Modal">
             
-            <a className="closeButton" onClick={closeModal}>X</a>
-            <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2> 
+//             <a className="closeButton" onClick={closeModal}>X</a>
+//             <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2> 
           
-            <form onSubmit={handleDonationSubmit}>
-              <input  name="NonprofitId" type="hidden" value={JobModalId}/>
-              <input
-                name="donationAmt"
-                type="number"
-                placeholder="Enter Donation Amount."
-                value={modalForm.donationAmount}
-                onChange={donationChange}
-              />
-              <button type="submit">Submit</button>
-            </form>
-        </Modal>
+//             <form onSubmit={handleDonationSubmit}>
+//               <input  name="NonprofitId" type="hidden" value={JobModalId}/>
+//               <input
+//                 name="donationAmt"
+//                 type="number"
+//                 placeholder="Enter Donation Amount."
+//                 value={modalForm.donationAmount}
+//                 onChange={donationChange}
+//               />
+//               <button type="submit">Submit</button>
+//             </form>
+//         </Modal>
 
       </div>
 
