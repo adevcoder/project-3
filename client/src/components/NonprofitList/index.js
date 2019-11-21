@@ -133,9 +133,11 @@ export function NonprofitListItem({ item })
 
                 <h5>{city}, {state.toUpperCase()} {zip}</h5>
 
+
                 {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
 
             </li>
+
         
             <Modal
             isOpen={modalIsOpen}
@@ -160,9 +162,9 @@ export function NonprofitListItem({ item })
             </form>
         </Modal>
 
-      </div>
-
-    )
-}
 
 
+
+
+     ) }
+                }
