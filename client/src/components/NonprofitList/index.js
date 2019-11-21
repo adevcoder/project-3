@@ -165,7 +165,7 @@ export function NonprofitListItem({ item })
 
                 <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a>
 
-            </li>
+           // </li>
         
             <Modal
             isOpen={modalIsOpen}
