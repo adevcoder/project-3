@@ -7,10 +7,7 @@ import Axios from "axios";
 import userContext from "../../userContext";
 
 export function NonprofitList({ nonprofits }) {
-<<<<<<< HEAD
    
-=======
->>>>>>> ed7f746bbacdf09de18e08404d3c482bbcc8b0aa
   return (
     <ul className="list-group">{nonprofits.map(item => {
       return (<NonprofitListItem item={item} key={item.id} />)

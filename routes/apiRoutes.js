@@ -135,7 +135,7 @@ module.exports = function (app) {
         console.log("category: ", req.params.category);
         qry = "SELECT `Nonprofits`.*,`Favorites`.`NonprofitId`,`Favorites`.`donationAmt`  FROM `Nonprofits`";
         qry = qry + " LEFT JOIN `Favorites` ON `Nonprofits`.`id` = `Favorites`.`NonprofitId`";
-        qry = qry + "  WHERE orgFocus LIKE '%" + req.params.category + "%' limit 5";
+        qry = qry + "  WHERE orgFocus LIKE '%" + req.params.category + "%'";
         db.sequelize.query(qry).then(([results, metadata]) => {
             //console.log("sequelize left join results: ", results)
             res.json(results);
