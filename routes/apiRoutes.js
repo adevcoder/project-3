@@ -15,6 +15,7 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+
     // post route for saving a favorite nonprofit for a user                            
     app.post("/api/update-favorite", function (req, res) {
 
@@ -60,9 +61,24 @@ module.exports = function (app) {
         });
 
     });
+
     // get route for getting favorites by userid
     // POSTMAN GET localhost:5000/api/get-user-favorites/userid/2
     app.get('/api/get-user-favorites/userid/:userid', function (req, res) {
+        console.log(req.params);
+        console.log("category: ", req.params.category);
+        qry = "SELECT `Favorites`.*,`Nonprofits`.*  FROM `Favorites`";
+        qry = qry + " JOIN `Nonprofits` ON `Favorites`.`NonprofitId` = `Nonprofits`.`id`";
+        qry = qry + "  WHERE Favorites.UserId = " + req.params.userid + " limit 5";
+        db.sequelize.query(qry).then(([results, metadata]) => {
+            console.log("sequelize join results: ", results)
+            res.json(results);
+        }).catch(function (err) {
+                res.status(500).send(err);
+        });
+    });
+    
+    /* app.get('/api/get-user-favorites/userid/:userid', function (req, res) {
 
         console.log('Entering get-user-favorites:', req.params);
         console.log("userId: ", req.params.userid);
@@ -76,7 +92,7 @@ module.exports = function (app) {
             res.status(500);
         });
     });
-
+*/
     // post route for saving a favorite nonprofit for a user                            
     app.post("/api/favorite", function (req, res) {
 
@@ -88,7 +104,7 @@ module.exports = function (app) {
         db.Favorites.create({
             donationAmt: req.body.donationAmt,
             NonprofitId: req.body.NonprofitId,
-            UserId: req.body.UserId
+            UserId: req.user.id
         }).then(function (results) {
             //res.json(results);
             res.sendStatus(200)
@@ -117,23 +133,18 @@ module.exports = function (app) {
 
         console.log(req.params);
         console.log("category: ", req.params.category);
-        db.Nonprofit.findAll({
-            //      LEFT JOIN `Favorites` ON `Nonprofits`.`id` = `Favorites`.`NonprofitId`   
-            //WHERE orgFocus LIKE '%Health and Medicine%'
-           // favoriteId
-            //include: [
-            //    {model: db.User, attributes: ['id', 'nickname'], paranoid: false, required: true},
-            //    {model: db.Contact, attributes: ['id', 'name', 'surname'], paranoid: false, where: {is_main_contact: true}, required: false}
-            //];
-            where: {
-                orgFocus: {
-                    [Op.like]: ["%" + req.params.category + "%"]
-                }
-            }
+        qry = "SELECT `Nonprofits`.*,`Favorites`.`NonprofitId`,`Favorites`.`donationAmt`  FROM `Nonprofits`";
+        qry = qry + " LEFT JOIN `Favorites` ON `Nonprofits`.`id` = `Favorites`.`NonprofitId`";
+        qry = qry + "  WHERE orgFocus LIKE '%" + req.params.category + "%'";
+        db.sequelize.query(qry).then(([results, metadata]) => {
+            //console.log("sequelize left join results: ", results)
+            res.json(results);
         })
-            .then(function (results) {
-                res.json(results);
-            })
+        //db.Nonprofit.findAll({
+        //    where: {
+        //        orgFocus: req.params.category
+        //    }
+        //})
             .catch(function (err) {
                 res.status(500).send(err);
             });
@@ -195,32 +206,8 @@ module.exports = function (app) {
 
     // get route to authenticate a user login
     app.get('/api/login', function (req, res) {
-
-        console.log('=================')
-        console.log(req.body.email);
-        console.log(req.body.password);
-        // reference models unit.js & find 1 unit by id passed in url
-        db.User.findOne({
-            where: {
-                email: req.body.email
-            }
-            // return data as json
-        }).then(function (result) {
-            console.log("passwd from db: ", result.password);
-            bcrypt.compare(req.body.password, result.password, function (err, res) {
-                console.log(JSON.stringify(res));
-                if (res) {
-                    console.log("passwd matches: ", result.password);
-                    return res.json({ "login": true });
-                }
-                else {
-                    console.log("passwd does not match: ", result.password);
-                    return res.json({ "login": false });
-                }
-            });
-        }).catch(function (err) {
-            res.status(500);
-        });
+        console.log("/api/login get called");
+        res.json(req.user);
     });
 
     // get route to find one user by its id
