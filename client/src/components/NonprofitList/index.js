@@ -163,7 +163,7 @@ export function NonprofitListItem({ item })
 //                 <button id="donate" className="btn btn-primary ml-2 mr-2" href="/donate" target="_blank" rel="noopener noreferrer">Donate</button>
 //             </div>
 
-                {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
+                <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a>
 
             </li>
         
