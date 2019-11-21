@@ -1,13 +1,12 @@
 import React from "react";
 
-export class RegisterForm extends React.Component {
+export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
       email: "",
-      password: ""
+      password: "",
+      loginError: ""
     };
   }
 
@@ -20,35 +19,29 @@ export class RegisterForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     this.setState({
-      firstName: "",
-      lastName: "",
       email: "",
       password: ""
+    });
+    fetch("/api/login", {
+      method: "GET",
+      data: {
+        firstName: this.refs.firstName,
+        lastName: this.refs.lastName
+      }
+    })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 
   render() {
-    const { firstName, lastName, email, password } = this.state;
+    const { email, password } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          name="firstName"
-          type="text"
-          placeholder="Enter your first name"
-          value={firstName}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="lastName">lastName</label>
-        <input
-          name="lastName"
-          type="text"
-          placeholder="Enter your last name"
-          value={lastName}
-          onChange={this.handleChange}
-        />
         <label htmlFor="email">Email</label>
         <input
           name="email"
@@ -65,8 +58,13 @@ export class RegisterForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
+<<<<<<< HEAD:client/src/components/Register/RegisterForm.js
         <button type="submit">Submittttt</button>
         <button className="btn btn-primary">click</button>
+=======
+        <button type="submit" href="/home" onClick={this.handleSubmit}>Submit</button>
+        <span id="errorMsg"></span>
+>>>>>>> 5224050a5c23ce3692ea18cd788ae9192c77bed9:client/src/pages/Login/LoginForm.js
       </form>
     );
   }

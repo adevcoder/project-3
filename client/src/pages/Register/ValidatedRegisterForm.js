@@ -1,37 +1,41 @@
 import React from "react";
 import { Formik } from "formik";
-// import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
-const ValidatedRegisterForm = () => (
+import axios from "axios"
+import { withRouter } from "react-router-dom"
+
+const ValidatedRegisterForm = (props) => (
   <Formik
     initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        console.log("Logging in", values);
-        setSubmitting(false);
-      }, 500);
+      console.log("Registering...", values);
+      axios.post("/api/register", values)
+        .then(() => {
+          setSubmitting(false);
+          props.history.push('/home')
+        })
     }}
 
-    validationSchema={Yup.object().shape({
-      firstName: Yup.string()
-        .required("Required"),
-      lastName: Yup.string()
-        .required("Required"),
-      email: Yup.string()
-        .email()
-        .required("Required"),
-      password: Yup.string()
-        .required("No password provided")
-      // .min(8, "Password is too short - should be 8 chars minimum.")
-      // .matches(/(?=.*[0-9])/, "Password must contain a number.")
-    })}
+
+  validationSchema={Yup.object().shape({
+    firstName: Yup.string()
+      .required("Required"),
+    lastName: Yup.string()
+      .required("Required"),
+    email: Yup.string()
+      .email()
+      .required("Required"),
+    password: Yup.string()
+      .required("No password provided")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    // .matches(/(?=.*[0-9])/, "Password must contain a number.")
+  })}
   >
     {props => {
       const {
         values,
         touched,
         errors,
-        isSubmitting,
         handleChange,
         handleBlur,
         handleSubmit
@@ -90,11 +94,11 @@ const ValidatedRegisterForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" onClick={isSubmitting}>Submittttt</button>
+          <button type="submit" onClick={handleSubmit}>Submit</button>
         </form>
       );
     }}
   </Formik>
 );
 
-export default ValidatedRegisterForm;
+export default withRouter(ValidatedRegisterForm);
