@@ -1,4 +1,5 @@
-import  React , { Component } from "react";
+//import  React , { Component } from "react";
+import  React  from "react";
 import Modal from 'react-modal';
 import "./style.css";
 import Axios from "axios";
@@ -11,8 +12,6 @@ export function NonprofitList({ nonprofits }) {
         }</ul>
     );
 };
-
-
 
 export function NonprofitListItem({ item }) 
 {
@@ -67,8 +66,8 @@ export function NonprofitListItem({ item })
       var handleDonationSubmit = (event) => {
         event.preventDefault()
         console.log(event);
-        console.log('JobModalId',JobModalId)
-        console.log('inp value',modalForm.donationAmount)
+        console.log('Nonprofit Id: ',JobModalId)
+        console.log("Donation Amount: " ,modalForm.donationAmount)
         const values = {
           NonprofitId : JobModalId,
           UserId : 2,
@@ -96,8 +95,9 @@ export function NonprofitListItem({ item })
       }
     
     
-    var DeleteFavourite = (item , id) => {
-      console.log(item.id);
+    var DeleteFavorite = (item , id) => {
+      console.log("id: ", id);
+      console.log("deleteFavorite item.id: ", item.id);
       var favoriteId = 1; //item.id;
       Axios.get('/api/delete-favorite/favoriteId/'+favoriteId)
       .then(() => {
@@ -124,7 +124,7 @@ export function NonprofitListItem({ item })
                         </button>
                         )
                     }
-                    <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavourite(item, id)}>Delete</button>
+                    <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavorite(item, id)}>Delete</button>
                 </div>
 
                 <h4 className="font-weight-bold">{orgName}</h4>
