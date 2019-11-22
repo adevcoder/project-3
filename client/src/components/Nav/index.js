@@ -1,15 +1,15 @@
 import React from "react";
-import "./Nav.css"
+import "./Nav.css";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    NavLink
+} from "react-router-dom";
+import UserContext from "../../userContext";
 
-function Nav() {
-    import {
-        BrowserRouter as Router,
-        Switch,
-        Route,
-        Link,
-        NavLink
-    } from "react-router-dom";
-    import UserContext from "../../userContext";
+
     function Nav(props) {
         const myUser = React.useContext(UserContext);
         console.log("myUser nav:", myUser);
@@ -43,6 +43,6 @@ function Nav() {
                 : null
         )
     }
-}
+
 
 export default Nav;
