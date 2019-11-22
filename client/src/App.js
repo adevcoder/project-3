@@ -6,7 +6,8 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Saved from "./pages/Saved";
 import Donate from "./pages/Donate";
-import Footer from "./components/Footer"
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 import userContext from "./userContext";
 import axios from "axios"
 
