@@ -44,9 +44,9 @@ class Saved extends React.Component {
                         onClick={() => this.handleDelete()}>Delete
                     </button>
 
-                    <button id="donate" className="btn btn-primary ml-2 mr-2"
+                    <a id="donate" className="btn btn-primary ml-2 mr-2"
                         href="/donate" target="_blank" rel="noopener noreferrer">Donate
-                    </button>
+                    </a>
 
                 </div>
 

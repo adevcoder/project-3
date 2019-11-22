@@ -1,10 +1,12 @@
 import React from "react";
-import "./styles.css";
-import SavedPage from "./savedPage";
+import "./SavedPage.css";
+import Nav from "../../components/Nav";
+import SavedPage from "./SavedPage";
 
 function App() {
   return (
     <div className="App">
+      <Nav />
       <SavedPage />
     </div>
   );

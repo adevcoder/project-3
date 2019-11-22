@@ -2,7 +2,7 @@
 //import  React , { Component } from "react";
 import React from "react";
 import Modal from 'react-modal';
-import "./style.css";
+import "./NonprofitList.css";
 import Axios from "axios";
 
 export function NonprofitList({ nonprofits }) {
@@ -109,58 +109,58 @@ export function NonprofitListItem({ item }) {
 
   return (
     <div>
-    <div>
-      <li className="list-group-item m-2">
+      <div>
+        <li className="list-group-item m-2">
 
-        <div className="float-right">
-          {!saved ? (
-            <button
-              className="btn btn-success"
-              onClick={event => openModal(item, id)} >Save
-                        </button>
-          ) : (
+          <div className="float-right">
+            {!saved ? (
               <button
-                className="btn btn-danger"
-                onClick={event => clickEvent(event, id)}>Unsave
+                className="btn btn-success"
+                onClick={event => openModal(item, id)} >Save
+                        </button>
+            ) : (
+                <button
+                  className="btn btn-danger"
+                  onClick={event => clickEvent(event, id)}>Unsave
               </button>
-            )
-          }
-          <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavorite(item, id)}>Delete</button>
-        </div>
+              )
+            }
+            <button id="delete" className="btn btn-danger ml-2 mr-2" onClick={event => DeleteFavorite(item, id)}>Delete</button>
+          </div>
 
-        <h4 className="font-weight-bold">{orgName}</h4>
+          <h4 className="font-weight-bold">{orgName}</h4>
 
-        <h5>Org Focus: {orgFocus}</h5>
+          <h5>Org Focus: {orgFocus}</h5>
 
-        <h5>{city}, {state.toUpperCase()} {zip}</h5>
+          <h5>{city}, {state.toUpperCase()} {zip}</h5>
 
 
-        {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
+          {url ? <a href={url} className="btn btn-success" rel="noopener noreferrer" target="_blank">Link to Organization</a> : null}
 
-      </li>
-    </div>
-    <Modal
-      isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="This is Modal">
+        </li>
+      </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="This is Modal">
 
-      <a className="closeButton" onClick={closeModal}>X</a>
-      <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2>
+        <a className="closeButton" onClick={closeModal}>X</a>
+        <h2 ref={_subtitle => (subtitle = _subtitle)}>Donation Amount </h2>
 
-      <form onSubmit={handleDonationSubmit}>
-        <input name="NonprofitId" type="hidden" value={JobModalId} />
-        <input
-          name="donationAmt"
-          type="number"
-          placeholder="Enter Donation Amount."
-          value={modalForm.donationAmount}
-          onChange={donationChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </Modal>
+        <form onSubmit={handleDonationSubmit}>
+          <input name="NonprofitId" type="hidden" value={JobModalId} />
+          <input
+            name="donationAmt"
+            type="number"
+            placeholder="Enter Donation Amount."
+            value={modalForm.donationAmount}
+            onChange={donationChange}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </Modal>
     </div>
 
 
