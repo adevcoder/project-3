@@ -1,4 +1,6 @@
 import React from "react";
+import "./Nav.css";
+import Logo from "../../assets/images/logo.png"
 import {
     NavLink
   } from "react-router-dom";
@@ -12,7 +14,8 @@ function Nav(props) {
   }
     return (
         (myUser.id !== undefined) ? 
-        <ul className="nav justify-content-end">
+        <ul className="nav navbar navbar-expand-lg">
+            <img src={Logo} className="logo" height="100" width="100" alt="website logo"/> 
             <li className="nav-item">
                 {/* <a className="nav-link active" href="/home">Home</a> */}
                 <NavLink activeClassName="active" className="nav-link" to="/home">Home</NavLink>
