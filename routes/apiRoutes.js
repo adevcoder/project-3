@@ -130,14 +130,13 @@ module.exports = function (app) {
 
         console.log('Create User Data:', req.body);
         bcrypt.hash(req.body.password, 10, function (err, password) {
-            console.log("hash: ", req);
+            console.log("hash: ", password);
             // create() requires an object describing the new data we're adding to table
             db.User.create({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
-                password: password,
-                userType: req.body.userType
+                password: req.body.password
             }).then(function (results) {
                 console.log("JSON.stringify(results): ", JSON.stringify(results));
                 res.json(results);
