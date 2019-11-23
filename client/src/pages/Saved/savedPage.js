@@ -42,7 +42,7 @@ class Saved extends React.Component {
             <li className="list list-group-item m-2">
 
                 <div className="jumbotron">
-                    <h3 className="display-4">Your Saved Non-Profits</h3>
+                    <h3 className="display-5">Your Saved Non-Profits</h3>
                 </div>
 
                 <NonprofitList showAction={true} nonprofits={this.state.nonprofits} />
