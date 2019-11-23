@@ -1,5 +1,6 @@
 import React,{ useState } from "react";
-import "./styles.css";
+import "./Home.css";
+import Nav from "../../components/Nav";
 import ButtonCategory from "../../components/Buttons/ButtonCategory"
 import { NonprofitList } from "../../components/NonprofitList/index"
 import UserContext from "../../userContext";
@@ -11,6 +12,7 @@ function Home(props) {
   }
   return (
     <div className="App">
+      <Nav />
       <ButtonCategory setnonprofits={setNonProfits}/>
       <NonprofitList showAction={false} nonprofits={nonprofits}/>
       {/* <NonprofitListItem /> */}
