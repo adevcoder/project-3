@@ -3,7 +3,11 @@
     background-color: rgb(192, 224, 243);
     font-size: 20px;
 }
-
+a.active  {
+    font-weight: bold;
+    color: rgb(73, 83, 126) !important;
+    float: right;
+}
 .nav-link {
     font-weight: bold;
     color: darkcyan;
