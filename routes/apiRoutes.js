@@ -178,43 +178,13 @@ module.exports = function (app) {
         console.log('user det 1',req.user)
         res.json(req.user);
     });
-// get route to authenticate a user login
-app.get('/api/login', function (req, res) {
-    console.log('=================')
-    console.log(req.body.email);
-    console.log(req.body.password);
-    // reference models unit.js & find 1 unit by id passed in url
-    db.User.findOne({
-        where: {
-            email: req.body.email
-        }
-        // return data as json
-    }).then(function (result) {
-        console.log("passwd from db: ", result.password);
-        bcrypt.compare(req.body.password, result.password, function (err, res) {
-            console.log(JSON.stringify(res));
-            if (res) {
-                console.log("passwd matches: ", result.password);
-                return res.json({ "login": true });
-            }
-            else {
-                console.log("passwd does not match: ", result.password);
-                return res.json({ "login": false });
-            }
-        });
-    }).catch(function (err) {
-        res.status(500);
 
+    // get route to authenticate a user login
+    app.get('/api/login', function (req, res) {
+        console.log("/api/login get called");
+        console.log('user det',req.user)
+        res.json(req.user);
     });
-});
-
-
-
-
-
-
-
-
 
     // get route to find one user by its id
     app.get('/api/user/:id', function (req, res) {

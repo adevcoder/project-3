@@ -1,7 +1,7 @@
 //import  React , { Component } from "react";
 import React from "react";
 import Modal from 'react-modal';
-import "./NonprofitList.css";
+import "./style.css";
 import Axios from "axios";
 import userContext from "../../userContext";
 

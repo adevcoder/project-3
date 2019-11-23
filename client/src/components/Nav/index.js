@@ -1,8 +1,6 @@
 import React from "react";
-import "./Nav.css";
 import {
     NavLink
-
   } from "react-router-dom";
   import UserContext from "../../userContext";
 function Nav(props) {
@@ -38,6 +36,5 @@ function Nav(props) {
         : null
     )
 }
-
 
 export default Nav;
