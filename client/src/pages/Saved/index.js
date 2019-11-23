@@ -1,8 +1,6 @@
 import React from "react";
-import "./SavedPage.css";
-import Nav from "../../components/Nav";
-import SavedPage from "./savedPage";
 import "./styles.css";
+import SavedPage from "./savedPage";
 import UserContext from "../../userContext";
 
 function SavedFav(props) {
@@ -14,7 +12,6 @@ function SavedFav(props) {
 
   return (
     <div className="App">
-      <Nav />
       <SavedPage />
     </div>
   );
