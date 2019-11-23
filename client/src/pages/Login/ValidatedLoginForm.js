@@ -10,11 +10,9 @@ const ValidatedLoginForm = (props) => (
   <Formik
     initialValues={{ email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
-      console.log("Loging in ...", values);
-      console.log("props.history: " + props.history);
       axios.post("/api/login", values)
         .then((res) => {
-          console.log('login res',res)
+          console.log("res[data]: ",res['data']);
           props.updateValue(res['data'])
           setSubmitting(false);
           props.history.push('/home');

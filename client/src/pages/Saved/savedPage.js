@@ -1,39 +1,33 @@
 import React from "react";
 import axios from "axios"
-import userContext from "../../userContext";
-import { NonprofitListItem, NonprofitList } from "../../components/NonprofitList";
+import UserContext from "../../userContext";
+import { NonprofitList } from "../../components/NonprofitList";
 
 class Saved extends React.Component {
-
-    constructor(props)
-    {  
-        //let value = this.userContext;
-        //console.log(value);
-        super(props);  
-        
-        this.state = { nonprofits : [] , isLoading: true} 
-    }  
+    static contextType = UserContext
+    constructor(props) {
+        super(props);
+        this.state = { nonprofits: [], isLoading: true }
+    }
 
 
     componentDidMount() {
-        this.getSavedNonprofits();
+        const myUser = this.context
+        this.getSavedNonprofits(myUser.id);
     }
 
-     getSavedNonprofits = () => {
+    getSavedNonprofits = (UserId) => {
+        console.log("UserId: ", UserId);
+        axios.get('/api/get-user-favorites/userid/' + UserId)
 
-        axios.get('/api/get-user-favorites/userid/2')
-       
-        .then(res => {
-            console.log('save res',res)
-            let resData = res.data
-            this.setState(prevState => ({
-                nonprofits : resData    // like push but without mutation
-            }));
-            console.log(res.data);
-            //this.setState({ nonprofits: res.data })
-        }).catch(err => console.log(err));
-          
-            console.log(this.state);
+            .then(res => {
+
+                let resData = res.data
+                this.setState(prevState => ({
+                    nonprofits: resData    // like push but without mutation
+                }));
+                //this.setState({ nonprofits: res.data })
+            }).catch(err => console.log(err));
     };
 
     handleDelete = id => {
@@ -43,7 +37,6 @@ class Saved extends React.Component {
     };
 
     render() {
-        console.log('render log',this.state.nonprofits)
         return (
             <li className="list-group-item m-2">
 
@@ -51,8 +44,8 @@ class Saved extends React.Component {
                     <h3 className="display-4">Your Saved Non-Profits</h3>
                 </div>
 
-                <NonprofitList showAction={true} nonprofits={this.state.nonprofits}/>
-                 
+                <NonprofitList showAction={true} nonprofits={this.state.nonprofits} />
+
 
                 {/* Need to get saved non-profit list down here */}
             </li>
