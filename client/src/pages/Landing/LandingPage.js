@@ -13,6 +13,7 @@ function Jumbotron() {
                 interest and create long time relationships
                 through monetary contributions.
           </p>
+          
 
           <hr className="my-4"></hr>
 
