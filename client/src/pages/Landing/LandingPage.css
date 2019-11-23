@@ -1,3 +1,11 @@
-.btn {
-    margin-left: 15px;;
+.jumbotron {
+    text-align: center;
+    margin: auto;
+    height: 90vh;
+    background-image: url("../../assets/images/landing.jpg");
+    background-size: cover;
+}
+
+.display-4 {
+    margin-top: 60px;
 }
