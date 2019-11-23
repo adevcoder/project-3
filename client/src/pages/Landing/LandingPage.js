@@ -15,7 +15,7 @@ function Jumbotron() {
                     <a activeClassName="active" className="nav-link" href="/register">Register</a>
                 </li>
             </ul>
-            <div className="jumbotron">
+            <div className="jumbotron landing">
                 <h2 className="display-4">The Non-Profit Hub</h2>
 
                 <p className="lead"> At The Non-Profit Hub, we provide 
