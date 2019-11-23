@@ -6,7 +6,7 @@ import DonatePage from "./DonatePage"
 function App() {
     return (
         <div className="App">
-            <Nav />
+            
             <DonatePage />
         </div>
     )
