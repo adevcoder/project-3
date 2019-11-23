@@ -6,7 +6,7 @@ function Donate() {
 
     return (
 
-        <div className="container">
+        <div className="container-donate">
 
             <h1 className="header">Donate Today and Transform the Lives of People</h1>
 
