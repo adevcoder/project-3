@@ -1,7 +1,8 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
+import "./SavedPage.css";
 import UserContext from "../../userContext";
-import { NonprofitList } from "../../components/NonprofitList";
+import { NonprofitList } from "../../components/NonprofitList"
 
 class Saved extends React.Component {
     static contextType = UserContext
@@ -38,7 +39,7 @@ class Saved extends React.Component {
 
     render() {
         return (
-            <li className="list-group-item m-2">
+            <li className="list list-group-item m-2">
 
                 <div className="jumbotron">
                     <h3 className="display-4">Your Saved Non-Profits</h3>
