@@ -8,7 +8,7 @@ import UserContext from "../../userContext";
 function SavedFav(props) {
 
   const myUser = React.useContext(UserContext);
-  if(myUser.id == undefined){
+  if(myUser.id === undefined){
     props.history.push('/login')
   }
 

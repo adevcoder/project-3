@@ -9,7 +9,7 @@ import Donate from "./pages/Donate";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import userContext from "./userContext";
-import axios from "axios"
+//import axios from "axios"
 
 function App() {
   const [user, setUser] = React.useState(false);
