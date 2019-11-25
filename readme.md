@@ -1,6 +1,5 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-![GitHub package.json dependency version (prod)](https://img.shields.io/gith
-ub/package-json/dependency-version/adevcoder/project-3/express)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/adevcoder/project-3/express)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/adevcoder/project-3/sequelize)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/adevcoder/project-3/mysql2)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/adevcoder/project-3/if-env)
@@ -10,8 +9,8 @@ ub/package-json/dependency-version/adevcoder/project-3/express)
 
 ## The Non-Profit Hub
 
-##This was the final project for the UCLA fullstack bootcamp course.
-##Technologies Used
+## This was the final project for the UCLA fullstack bootcamp course.
+## Technologies Used
 * React.js
 * React Router
 * REact Context
