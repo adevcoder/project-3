@@ -11,11 +11,16 @@
 ## Technologies Used
 * React.js
 * React Router
-* REact Context
+* React Context
 * Node.js
+* Express.js
 * passport.js
+* Axios
+* Body-Parser
+* Bootstrap
 * MySQL
 * Sequelize
+* HTML5, CSS3, Javascript(ES6)
 
 ## Program Explanation
 
