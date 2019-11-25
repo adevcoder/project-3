@@ -7,8 +7,6 @@
 [![Node version](https://badge.fury.io/js/node.svg)](https://badge.fury.io/js/node)
 
 
-## The Non-Profit Hub
-
 ## This was the final project for the UCLA fullstack bootcamp course.
 ## Technologies Used
 * React.js
@@ -20,8 +18,10 @@
 * Sequelize
 
 ## Program Explanation
-At the Non-profit Hub, we provide our users with the ability to search from over one thousand non-profit organization based on their interest and allow them the ability to manage multiple contribution in one single place. In the project, we have main login and resister page for users to access, and users can choose their favorite non-profit organizations and donate, and this is "the non-profit hub" for all people to donate their money.
 
 ![Website Image](screenshot_mainpage.jpg)
+
+## The Non-Profit Hub
+At the Non-profit Hub, we provide our users with the ability to search from over one thousand non-profit organization based on their interest and allow them the ability to manage multiple contribution in one single place. In the project, we have main login and resister page for users to access, and users can choose their favorite non-profit organizations and donate, and this is "the non-profit hub" for all people to donate their money.
 
 Check us out at https://project-3-z.herokuapp.com/
